@@ -6,7 +6,8 @@ import pandas as pd
 
 
 load_dotenv()
-
+api_key=st.input_text("YOUR_API_KEY_HERE")
+os.environ["GOOGLE_API_KEY"]=os.getenv("GOOGLE_API_KEY", api_key)
 llm=ChatGoogleGenerativeAI(model="gemini-2.5-pro", temperature=0.7)
 
 prompt_1=ChatPromptTemplate.from_messages([
@@ -40,4 +41,5 @@ if st.button("Submit"):
         file_name="Transcript_Summarization.csv",
         mime="text/csv",
         key='download_csv_button'
+
     )
