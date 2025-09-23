@@ -6,7 +6,7 @@ import pandas as pd
 
 
 load_dotenv()
-api_key=st.input_text("YOUR_API_KEY_HERE")
+api_key = st.text_input("Enter your Google API Key", type="password")
 os.environ["GOOGLE_API_KEY"]=os.getenv("GOOGLE_API_KEY", api_key)
 llm=ChatGoogleGenerativeAI(model="gemini-2.5-pro", temperature=0.7)
 
@@ -43,3 +43,4 @@ if st.button("Submit"):
         key='download_csv_button'
 
     )
+
