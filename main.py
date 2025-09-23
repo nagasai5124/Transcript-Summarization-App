@@ -4,12 +4,18 @@ from dotenv import load_dotenv
 import streamlit as st
 import pandas as pd
 
-# Ask for API key in UI (for local testing)
+import os
+import streamlit as st
+
+# 1️⃣ Ask the user for an API key first (useful for local testing)
 api_key = st.text_input("Enter your Google API Key", type="password")
 
-# Use either the environment variable or user input
-final_api_key = os.getenv("GOOGLE_API_KEY", api_key)
+# 2️⃣ Retrieve the key:
+# - Use the environment variable GOOGLE_API_KEY if set
+# - Otherwise, use the value entered by the user
+final_api_key = os.getenv("GOOGLE_API_KEY") or api_key
 
+# 3️⃣ Validate the key
 if not final_api_key:
     st.error("❌ No API key found. Please enter it or set GOOGLE_API_KEY as an environment variable.")
 else:
@@ -51,5 +57,6 @@ else:
             key='download_csv_button'
     
         )
+
 
 
